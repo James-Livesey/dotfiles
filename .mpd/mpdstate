@@ -1,0 +1,20 @@
+sw_volume: 30
+audio_device_state:1:pulse audio
+audio_device_state:1:my_fifo
+state: stop
+current: 0
+random: 0
+repeat: 0
+single: 0
+consume: 0
+crossfade: 0
+mixrampdb: 0.000000
+mixrampdelay: -1.000000
+playlist_begin
+0:Dark Cat - BANANA STREET.mp3
+1:Dreweybear - SAD $OULS.mp3
+2:Ento - Miss You.mp3
+3:Kaivaan - Escape (Ft. Hikaru Station) (Ento Remix).mp3
+4:Said The Sky - Run Away (feat. Car).mp3
+5:Superorganism - Night Time.mp3
+playlist_end

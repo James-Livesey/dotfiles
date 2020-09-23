@@ -1,0 +1,151 @@
+[colors]
+background = #002b36
+background-alt = #073642
+foreground = #93a1a1
+foreground-alt = #93a1a1
+primary = #268bd2
+secondary = #859900
+alert = #cb4b16
+
+[bar/main]
+monitor = ${env:MONITOR:HDMI-0}
+width = 100%
+height = 32
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+padding-left = 1
+padding-right = 1
+
+module-margin-left = 1
+module-margin-right = 1
+
+font-0 = "Overpass Mono:size=10"
+
+modules-left = date filesystem cpu memory temperature
+modules-center = xworkspaces
+modules-right = mpd pulseaudio xkeyboard wlan eth powermenu
+
+cursor-click = pointer
+
+[module/xkeyboard]
+type = internal/xkeyboard
+blacklist-0 = num lock
+
+[module/filesystem]
+
+type = internal/fs
+interval = 30
+
+mount-0 = /
+
+label-mounted = %{F#268bd2}%mountpoint%%{F-}: %percentage_used%%
+label-unmounted = %mountpoint% unmounted
+label-unmounted-foreground = ${colors.foreground-alt}
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "cpu "
+format-prefix-foreground = ${colors.primary}
+label = %percentage:2%%
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "ram "
+format-prefix-foreground = ${colors.primary}
+label = %percentage_used%%
+
+[module/temperature]
+type = internal/temperature
+interval = 2
+format-prefix = "temp "
+format-prefix-foreground = ${colors.primary}
+
+thermal-zone = 0
+hwmon-path = /sys/devices/pci0000:00/0000:00:18.3/hwmon/hwmon0/temp1_input
+
+base-temperature = 20
+warn-temperature = 60
+
+[module/xworkspaces]
+type = internal/xworkspaces
+
+label-active-foreground = ${colors.secondary}
+
+[module/wlan]
+type = internal/network
+interface = wlp29s0
+interval = 3
+
+format-connected = %{F#268bd2}wlan%{F-} <label-connected> <ramp-signal>
+label-connected = %essid%
+
+format-disconnected = 
+
+ramp-signal-0 = *
+ramp-signal-1 = **
+ramp-signal-2 = ***
+ramp-signal-3 = ****
+ramp-signal-4 = *****
+ramp-signal-foreground = ${colors.foreground-alt}
+
+[module/eth]
+type = internal/network
+interface = enp27s0
+interval = 3
+
+format-connected-prefix = "eth"
+format-connected-foreground = ${colors.foreground-alt}
+label-connected = %{A1:wicd-client &:}%local_ip%%{A}
+
+format-disconnected = 
+
+[module/date]
+type = internal/date
+interval = 1
+
+date = %{F#268bd2}%d/%m/%Y
+time = %{F#93a1a1}%H:%M:%S
+
+label = %date% %time%
+
+[module/mpd]
+type = internal/mpd
+host = 127.0.0.1
+port = 6600
+interval = 1
+
+format-online = %{F#268bd2}<label-song> %{F-}<label-time>
+label-song = %title%
+label-time = %elapsed% / %total%
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+format-volume = <label-volume> <bar-volume>
+label-volume = %{F#268bd2}vol%{F-} %percentage%%
+label-volume-foreground = ${colors.foreground}
+
+label-muted = mute
+label-muted-foreground = ${colors.alert}
+
+bar-volume-empty = 
+bar-volume-fill = *
+bar-volume-width = 5
+bar-volume-indicator = *
+
+click-right = pavucontrol &
+
+[module/powermenu]
+type = custom/text
+
+content = power
+
+content-foreground = ${colors.alert}
+
+click-left = "lxsession-logout --prompt 'Choose a power option below. See you again soon!' --banner /home/james/VoltOS.png --side top"
+
+[settings]
+screenchange-reload = true
