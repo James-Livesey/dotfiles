@@ -1,5 +1,7 @@
 # dotfiles
-The dotfiles for my Linux setup!
+The dotfiles for my Linux setup! Dubbed VoltOS, because it sounds cool.
+
+![Screenshot of the VoltOS experience](VoltOS%20Screenshot.png)
 
 ## Installation script
 The installation script is designed for Debian 10 Buster only. Proceed with
